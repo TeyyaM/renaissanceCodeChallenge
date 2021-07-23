@@ -26,7 +26,7 @@ const connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) throw err;
-  console.log('You are now connected...');
+  console.log('Connected to the database');
 });
 
 // view engine setup
