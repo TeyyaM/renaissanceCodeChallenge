@@ -1,3 +1,7 @@
+// load .env data into process.env
+const dotenv = require('dotenv')
+dotenv.config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -8,6 +12,22 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
+
+// Setup database for queries
+const mysql = require('mysql')
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+})
+
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected...')
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
