@@ -15,6 +15,7 @@ const app = express();
 
 // Setup database for queries
 const mysql = require('mysql');
+const generateQueryHelpers = require("./bin/dbHelpers.js");
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -28,6 +29,11 @@ connection.connect(function(err) {
   if (err) throw err;
   console.log('Connected to the database');
 });
+
+const {
+  fetchExpensesByUserId,
+  fetchUserId,
+  insertExpense } = generateTodoHelpers(connection);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,5 +63,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Hardcoded user for development
 
 module.exports = app;
