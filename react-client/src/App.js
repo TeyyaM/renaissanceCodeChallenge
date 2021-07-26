@@ -1,7 +1,7 @@
 import './App.css';
 import Form from './Components/ExpenseForm';
-import List from './Components/ExpensesList';
-import DataTable from './Components/Table';
+import Table from './Components/ExpensesTable';
+
 const App = () => {
 
 
@@ -9,8 +9,7 @@ const App = () => {
   return (
     <div className="App">
         <Form />
-        <List />
-        <DataTable />
+        <Table />
     </div>
   );
 }

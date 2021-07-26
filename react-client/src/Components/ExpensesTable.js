@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import DataTable from './Table';
 
 
 
@@ -15,15 +16,7 @@ export default function List() {
 
   return (
     <div style={{width: "80%"}}>
-      <ul>
-        {expenses.map(expense=> (
-          <li key={expense.id} >
-            {expense.name}
-            {expense.cost / 100}
-            {expense.category}
-          </li>
-        ))}
-      </ul>
+      <DataTable rows={expenses}/>
     </div>
   );
 }
