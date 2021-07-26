@@ -12,7 +12,7 @@ export default function List() {
       .then((res) => {
         setExpenses(res.data);
       })
-  }, [])
+  }, [expenses])
 
   return (
     <div style={{width: "80%"}}>

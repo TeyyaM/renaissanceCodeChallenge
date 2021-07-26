@@ -47,7 +47,7 @@ export default function DataTable(props) {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={10}
+        pageSize={6}
       />
     </div>
   );

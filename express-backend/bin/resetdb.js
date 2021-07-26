@@ -44,7 +44,7 @@ const seedTables = () => {
                       ['example@example.com', 'password', 'Fake User']);
     connection.query(`INSERT INTO expenses (name, cost, category, user_id) 
                       VALUES (?, ?, ?, ?)`, 
-                      ['Electricity', 300, 'Bills', 1]);
+                      ['Electricity', 300000, 'Bills', 1]);
                 
     connection.query('SELECT * FROM users', (err, results) => {
       if (err) throw err;
@@ -60,7 +60,7 @@ const seedTables = () => {
 // Create connection and reset database
 connection.connect((err) => {
   if (err) throw err;
-  console.log('Successful connection!');
+  console.log('Successful reset of the database!');
   createTables();
   // Comment out 'seedTables();' once in production
   seedTables();
