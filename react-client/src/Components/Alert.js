@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
+// Generic, multipurpose alert
 export default function SimpleAlerts(props) {
 
   // props.severity can be "error", "warning", "info", or "success"

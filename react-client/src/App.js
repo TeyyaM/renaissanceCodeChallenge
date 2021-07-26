@@ -1,14 +1,14 @@
 import './App.css';
-import Form from './ExpenseForm';
+import Form from './Components/ExpenseForm';
+import List from './Components/ExpensesList';
 const App = () => {
 
 
 
   return (
     <div className="App">
-      <header className="App-header">
         <Form />
-      </header>
+        <List />
     </div>
   );
 }
