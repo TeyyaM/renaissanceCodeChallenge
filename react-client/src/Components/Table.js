@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -46,9 +46,22 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function DataTable() {
+export default function DataTable(props) {
+const { data } = props;
+// const columns = [];
+// const rows = [];
+console.log(data);
+const addColumn = (input) => {
+
+}
+
+const addRow = (input) => {
+
+}
+
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '100%', backgroundColor: 'white' }}>
       <DataGrid
         rows={rows}
         columns={columns}

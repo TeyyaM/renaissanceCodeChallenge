@@ -1,6 +1,7 @@
 import './App.css';
 import Form from './Components/ExpenseForm';
 import List from './Components/ExpensesList';
+import DataTable from './Components/Table';
 const App = () => {
 
 
@@ -9,6 +10,7 @@ const App = () => {
     <div className="App">
         <Form />
         <List />
+        <DataTable />
     </div>
   );
 }
