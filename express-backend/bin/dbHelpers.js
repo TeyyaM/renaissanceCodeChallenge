@@ -7,7 +7,6 @@ const generateQueryHelpers = (connection) => {
                           WHERE expenses.user_id = ?`,
         [userId], (err, results) => {
           if (err) return reject(err);
-          console.log("user #1's expenses", results);
           resolve(results);
       })
     })

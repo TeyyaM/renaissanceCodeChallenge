@@ -46,7 +46,6 @@ app.get('/api/expenses', (req, res) => {
 
 // insert a new expense
 app.post('/api/expenses', (req, res) => {
-  console.log('I pinged hurray')
   // Hardcoded user for development, will be from cookie later
   fetchUserId({ email: 'example@example.com', password: 'password' })
     .then((userId) => {

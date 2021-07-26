@@ -27,25 +27,24 @@ export default function Form() {
     // Check there is an expense and the cost is a number
     (expense.name && /^\d+$/.test(expense.cost))
     ? axios.post('/api/expenses', expense) 
-      .then(res => {
-        console.log("POST", res.data)
-        setIssue(false)
-        setExpense(prev => ({ ...prev, name: "", cost: "", category: "" }))
+      .then(() => {
+        setIssue(false);
+        setExpense(prev => ({ ...prev, name: "", cost: "", category: "" }));
       })
       .catch(err => console.log("ERROR", err))
     : setIssue(true);
   };
 
   function nameHandler(event) {
-    setExpense(prev => ({ ...prev, name: event.target.value }))
+    setExpense(prev => ({ ...prev, name: event.target.value }));
   };
 
   function costHandler(event) {
-    setExpense((prev) => ({ ...prev, cost: event.target.value }))
+    setExpense((prev) => ({ ...prev, cost: event.target.value }));
   };
 
   function categoryHandler(event) {
-    setExpense((prev) => ({ ...prev, category: event.target.value }))
+    setExpense((prev) => ({ ...prev, category: event.target.value }));
   };
 
   return (

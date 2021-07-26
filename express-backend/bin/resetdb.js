@@ -48,11 +48,9 @@ const seedTables = () => {
                 
     connection.query('SELECT * FROM users', (err, results) => {
       if (err) throw err;
-      console.log("users table", results);
     });
     connection.query('SELECT * FROM expenses', (err, results) => {
       if (err) throw err;
-      console.log("expenses table", results);
     });
   } catch (err) {
     return console.log("ERROR: ", err);
