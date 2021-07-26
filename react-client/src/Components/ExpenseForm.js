@@ -17,7 +17,7 @@ export default function Form() {
     display: 'flex',
     alignContent: 'space-around',
     justifyContent: 'space-between',
-    marginTop: '1rem',
+    marginTop: '3rem',
     marginBottom: '3rem'
 
   };

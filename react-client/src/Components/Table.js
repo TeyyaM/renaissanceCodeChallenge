@@ -12,14 +12,12 @@ const columns = [
     field: 'name',
     headerName: 'Expense',
     flex,
-    editable: true,
     description: "Name/Description of the expense",
   },
   {
     field: 'cost',
     headerName: 'Cost',
     flex,
-    editable: true,
     description: "The cost of the expense in dollars",
     // Convert pennies to dollars
     valueFormatter: (params) => {
@@ -31,14 +29,12 @@ const columns = [
     field: 'category',
     headerName: 'Category',
     flex,
-    editable: true,
     description: "The category of the expense",
   },
   {
     field: 'timestamp',
     headerName: 'Timestamp',
     flex,
-    editable: true,
     description: "Timestamp of the expense",
   },
 ];
