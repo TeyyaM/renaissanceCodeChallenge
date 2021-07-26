@@ -1,4 +1,6 @@
-import { DataGrid } from '@material-ui/data-grid';
+import axios from 'axios';
+import { XGrid } from '@material-ui/x-grid';
+import Button from '@material-ui/core/Button';
 
 const flex = 1;
 
@@ -40,15 +42,37 @@ const columns = [
 ];
 
 export default function DataTable(props) {
-  const { rows } = props;
 
+  const { rows, selectedRows, setSelectedRows } = props;
+
+  const deleteRows = async () => {
+
+    for (let row of selectedRows) {
+      try {
+        const res = await axios.delete(`/api/expenses/${row}`);
+        console.log("DATA: ", res.data);
+      } catch (err) {
+        return console.log("ERROR: ", err);
+      }
+    }
+  
+  }
+
+  // Change to XGrid for multiple selection
   return (
     <div style={{ height: 400, width: '100%', backgroundColor: 'white', borderRadius: '4px' }}>
-      <DataGrid
+      <XGrid
         rows={rows}
         columns={columns}
         pageSize={6}
+        checkboxSelection
+        disableSelectionOnClick
+        onSelectionModelChange={(newSelection) => {
+          setSelectedRows(newSelection);
+        }}
+        selectionModel={selectedRows}
       />
+      <Button variant="contained" color="secondary" onClick={deleteRows}>Delete</Button>
     </div>
   );
 }
