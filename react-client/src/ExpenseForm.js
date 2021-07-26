@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Alert from './Alert';
 import axios from 'axios';
 
 
@@ -15,8 +16,10 @@ export default function Form() {
     borderRadius: '4px', 
     display: 'flex',
     alignContent: 'space-around',
-    justifyContent: 'space-around',
-    width: '80%'
+    justifyContent: 'space-between',
+    marginTop: '1rem',
+    marginBottom: '3rem'
+
   };
 
   const submitExpense = (event) => {
@@ -26,20 +29,12 @@ export default function Form() {
     ? axios.post('/api/expenses', expense) 
       .then(res => {
         console.log("POST", res.data)
+        setIssue(false)
         setExpense(prev => ({ ...prev, name: "", cost: "", category: "" }))
       })
       .catch(err => console.log("ERROR", err))
-    : console.log('not valid');
-    // : setIssue(true);
+    : setIssue(true);
   };
-
-  // const submitExpense = (event) => {
-  //   event.preventDefault();
-  //   console.log('I tried to send a message')
-  //   axios.post('/api/expenses', { name: "Lost wallet", cost: 1000, category: null }) 
-  //     .then(res => console.log("POST", res.data))
-  //     .catch(err => console.log("ERROR", err));
-  // }
 
   function nameHandler(event) {
     setExpense(prev => ({ ...prev, name: event.target.value }))
@@ -54,7 +49,13 @@ export default function Form() {
   };
 
   return (
-    <form noValidate autoComplete="off" onSubmit={submitExpense} style={ formStyling }>
+    <div style={{width: "80%"}}>
+      <Alert
+        severity="error"
+        message="Input is invalid! Please make sure there is an expense and the cost is a number!"
+        open={issue}
+      />
+      <form noValidate autoComplete="off" onSubmit={submitExpense} style={ formStyling }>
 
         <TextField
           id="outlined-basic"
@@ -63,7 +64,6 @@ export default function Form() {
           value={expense.name}
           onInput={nameHandler}
           />
-
         <TextField
           id="outlined-basic"
           label="Cost ($)"
@@ -71,24 +71,21 @@ export default function Form() {
           value={expense.cost}
           onInput={costHandler}
           />
-
         <TextField
           id="outlined-basic"
           label="Category"
           variant="outlined"
           value={expense.category}
           onInput={categoryHandler}
-          />
-
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit" >
-            Submit Expense
-          </Button>
-
-    </form>
-
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit" >
+          Submit Expense
+        </Button>
+      </form>
+    </div>
   );
 }
 
