@@ -36,7 +36,7 @@ app.use(express.static('public'));
 // returns JSON of user's expenses
 app.get('/api/expenses', (req, res) => {
 
-  // Hardcoded user for development
+  // Hardcoded user for development, will be from cookie later
   fetchUserId({ email: 'example@example.com', password: 'password' })
     .then((userId) => {
       return fetchExpensesByUserId(userId);
@@ -44,7 +44,17 @@ app.get('/api/expenses', (req, res) => {
     .then((expenses) => res.json(expenses));
 });
 
-
+// insert a new expense
+app.post('/api/expenses', (req, res) => {
+  console.log('I pinged hurray')
+  // Hardcoded user for development, will be from cookie later
+  fetchUserId({ email: 'example@example.com', password: 'password' })
+    .then((userId) => {
+      const { name, cost, category } = req.body;
+      return insertExpense({ name, cost, category, userId });
+    })
+    .then((data) => res.json(data));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

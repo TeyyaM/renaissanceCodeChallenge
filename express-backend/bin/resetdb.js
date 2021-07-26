@@ -27,7 +27,7 @@ const createTables = () => {
                         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
                         name VARCHAR(255) NOT NULL, 
                         cost INT NOT NULL, 
-                        category VARCHAR(255) NOT NULL, 
+                        category VARCHAR(255), 
                         timestamp TIMESTAMP NOT NULL DEFAULT NOW(), 
                         user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE)`);
   } catch (err) {

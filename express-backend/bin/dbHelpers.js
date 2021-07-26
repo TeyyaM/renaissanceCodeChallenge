@@ -25,17 +25,19 @@ const generateQueryHelpers = (connection) => {
     })
   };
 
-  const insertExpense = () => {
+  const insertExpense = (input) => {
+    console.log('this was the input into insertExpense:', input)
+    const { name, cost, category, userId } = input;
     return new Promise(function(resolve, reject) {
       return connection.query(`INSERT INTO expenses (name, cost, category, user_id)
                           VALUES (?, ?, ?, ?)`,
-      ['Water', 600, 'Bills', 1], (err, results) => {
+      [name, cost * 100, category, userId], (err, results) => {
         if (err) return reject(err);
         resolve(results);
       });
     })
   };
-insertExpense()
+
   return {
     fetchExpensesByUserId,
     fetchUserId,
