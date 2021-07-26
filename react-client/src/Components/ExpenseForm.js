@@ -57,21 +57,21 @@ export default function Form() {
       <form noValidate autoComplete="off" onSubmit={submitExpense} style={ formStyling }>
 
         <TextField
-          id="outlined-basic"
+          id="name"
           label="Expense"
           variant="outlined"
           value={expense.name}
           onInput={nameHandler}
           />
         <TextField
-          id="outlined-basic"
+          id="cost"
           label="Cost ($)"
           variant="outlined"
           value={expense.cost}
           onInput={costHandler}
           />
         <TextField
-          id="outlined-basic"
+          id="category"
           label="Category"
           variant="outlined"
           value={expense.category}

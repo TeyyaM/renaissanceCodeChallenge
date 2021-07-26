@@ -27,7 +27,8 @@ connection.connect(function(err) {
 const {
   fetchExpensesByUserId,
   fetchUserId,
-  insertExpense } = generateQueryHelpers(connection);
+  insertExpense,
+  deleteExpense } = generateQueryHelpers(connection);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -51,6 +52,16 @@ app.post('/api/expenses', (req, res) => {
     .then((userId) => {
       const { name, cost, category } = req.body;
       return insertExpense({ name, cost, category, userId });
+    })
+    .then((data) => res.json(data));
+});
+
+// delete an expense
+app.delete('/api/expenses/:id', (req, res) => {
+  // Hardcoded user for development, will be from cookie later
+  fetchUserId({ email: 'example@example.com', password: 'password' })
+    .then((userId) => {
+      return deleteExpense({ userId, id: req.params.id });
     })
     .then((data) => res.json(data));
 });

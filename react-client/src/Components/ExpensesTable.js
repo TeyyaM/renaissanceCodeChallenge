@@ -7,6 +7,8 @@ import DataTable from './Table';
 export default function List() {
 
   const [expenses, setExpenses] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
+
   useEffect(() => {
     axios.get('/api/expenses')
       .then((res) => {
@@ -14,9 +16,13 @@ export default function List() {
       })
   }, [expenses])
 
+
+
   return (
     <div style={{width: "80%"}}>
-      <DataTable rows={expenses}/>
+      <DataTable rows={expenses} 
+      selectedRows= {selectedRows}
+      setSelectedRows={setSelectedRows} />
     </div>
   );
 }

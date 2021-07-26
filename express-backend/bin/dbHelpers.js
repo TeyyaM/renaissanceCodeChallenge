@@ -36,10 +36,23 @@ const generateQueryHelpers = (connection) => {
     })
   };
 
+  const deleteExpense = (input) => {
+    const { id, userId } = input;
+    return new Promise(function(resolve, reject) {
+      return connection.query(`DELETE FROM expenses 
+                          WHERE id = ? AND user_id = ?`,
+      [id, userId], (err, results) => {
+        if (err) return reject(err);
+        resolve(results);
+      });
+    })
+  };
+
   return {
     fetchExpensesByUserId,
     fetchUserId,
-    insertExpense
+    insertExpense,
+    deleteExpense
   };
 };
 
